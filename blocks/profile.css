@@ -139,9 +139,6 @@
     font-size: 22px;
     line-height: 27px;
     text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
     max-width: 196px;
   }
 
