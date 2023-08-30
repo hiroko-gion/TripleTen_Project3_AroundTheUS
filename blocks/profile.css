@@ -147,3 +147,29 @@
     margin-bottom: 30px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .profile {
+    flex-direction: column;
+  }
+  .profile__title {
+    font-size: 24px;
+  }
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  .profile__description {
+    width: 282px;
+    height: 14px;
+    text-align: center;
+    padding-bottom: 36px;
+  }
+  .profile__add-button {
+    margin: 0;
+    width: 282px;
+    border-width: 2px;
+  }
+}
