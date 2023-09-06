@@ -102,15 +102,13 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    padding-left: 62px;
     justify-content: center;
     grid-gap: 14px 17px;
+    margin: 0;
   }
 
   .profile__description {
     width: 100%;
-    margin-top: 14px;
-    padding-right: 40px;
     font-size: 14px;
     line-height: 17px;
     text-align: center;
@@ -129,7 +127,6 @@
     height: 18px;
     width: 18px;
     background-size: 7.5px;
-    margin-bottom: 30px;
     margin-right: 0px;
     align-items: center;
   }
