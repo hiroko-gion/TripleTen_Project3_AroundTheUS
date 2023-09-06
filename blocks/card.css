@@ -43,6 +43,7 @@
 }
 
 .card__like-button:hover {
-  opacity: 100%;
+  fill: #000;
+  opacity: 0.5;
   cursor: pointer;
 }
