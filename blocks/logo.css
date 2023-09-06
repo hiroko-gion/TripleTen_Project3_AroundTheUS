@@ -1,6 +1,11 @@
 @media screen and (max-width: 620px) {
   .logo {
-    padding-left: 27px;
     max-width: 126px;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo {
+    margin-left: 27px;
   }
 }
