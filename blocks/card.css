@@ -47,3 +47,23 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
+.card__like-button-active {
+  background: url(../images/like-active.svg);
+}
+
+.crad__delete-button {
+  background: url(../images/trash.svg) center no-repeat;
+  position: absolute;
+  width: 18px;
+  height: 19.3px;
+  border: none;
+  margin-top: 18px;
+  margin-left: 249px;
+  padding: 0;
+}
+
+.crad__delete-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
