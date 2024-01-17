@@ -83,6 +83,31 @@
   padding: 0;
 }
 
+.modal__input_type_error {
+  border-color: #ff0000;
+}
+
+.modal__label {
+  position: relative;
+}
+
+.modal__error {
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  font-weight: 400;
+  /*position: absolute;
+  /*opacity: 0;*/
+  /*top: 30px;*/
+  top: calc(100% + 6px);
+  left: 0;
+  transition: opacity 0.3s;
+}
+
+.modal__input_type_error_visible {
+  opacity: 1;
+}
+
 .modal__input-description {
   display: flex;
   flex-direction: column;
