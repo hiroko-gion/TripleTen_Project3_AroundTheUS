@@ -89,6 +89,10 @@
   margin-top: 13px;
 }
 
+.modal__input_type_link {
+  margin-top: 13px;
+}
+
 .modal__input_type_error {
   border-color: #ff0000;
 }
@@ -108,6 +112,8 @@
   top: calc(100% + 4px);
   left: 0;
   transition: opacity 0.3s;
+  min-height: 15px;
+  display: block;
 }
 
 .modal__error_visible {
