@@ -82,7 +82,11 @@
   margin: 0;
   padding-top: 0;
   padding-bottom: 13.26px;
-  margin-bottom: 28.74px;
+  margin-bottom: 5px;
+}
+
+.modal__input-description {
+  margin-top: 13px;
 }
 
 .modal__input_type_error {
@@ -91,6 +95,7 @@
 
 .modal__label {
   position: relative;
+  display: block;
 }
 
 .modal__error {
@@ -98,9 +103,9 @@
   line-height: 15px;
   color: #ff0000;
   font-weight: 400;
-  position: absolute;
+  /*position: absolute;*/
   opacity: 0;
-  top: calc(100% + 6px);
+  top: calc(100% + 4px);
   left: 0;
   transition: opacity 0.3s;
 }
@@ -122,6 +127,7 @@
   text-align: center;
   padding: 0;
   transition: opacity 0.3s linear;
+  margin-top: 31.34px;
 }
 
 .modal__button:hover {
@@ -140,10 +146,6 @@
 .modal__button_disabled:hover {
   opacity: 0.2;
   cursor: default;
-}
-
-.modal__error_visible {
-  color: red;
 }
 
 .preview__card-image {
