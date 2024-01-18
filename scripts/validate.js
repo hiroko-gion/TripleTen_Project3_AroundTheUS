@@ -32,38 +32,41 @@ function checkInputValidity(formEl, inputEl, options) {
   }
 }
 
+function hasInvalidInput(inputList) {
+  return !inputList.every((inputEl) => inputEl.validity.valid);
+}
+
+//disableButton
+
+//enableButton
+
+function toggleButtonState(
+  inputElements,
+  submitButton,
+  { inactiveButtonClass }
+) {
+  if (hasInvalidInput(inputElements)) {
+    submitButton.classList.add(inactiveButtonClass);
+    submitButton.disabled = true;
+    return;
+  }
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.disabled = false;
+}
+
 function setEventListeners(formEl, options) {
-  const { inputSelector } = options; //this is same as "const inputSelector = options.inputSelector;"
+  const { inputSelector, submitButtonSelector } = options; //this is same as "const inputSelector = options.inputSelector;"
   const inputElements = [...formEl.querySelectorAll(inputSelector)]; //1. look for all inputs inside of forms
+  const submitButton = formEl.querySelector(submitButtonSelector);
   inputElements.forEach((inputEl) => {
     inputEl.addEventListener("input", (e) => {
       checkInputValidity(formEl, inputEl, options);
+      toggleButtonState(inputElements, submitButton, options);
     });
   });
 }
 
 //  ||----------------------------------- ENABLE VALIDATION ----------------------------------------------||
-// 1ST STEP
-// * This code logs "NodeList" on cosole, it's not an array, we want to this to be array
-
-//function enableValidation(options) {
-//const formEls = document.querySelectorAll(".modal__form");
-//console.log(formEls);
-//}
-
-// 2ND STEP
-// * This code can create an array using "Array.from" method, it's stored in different data structure than NodeList.
-// * The data structure in an array gives more options to manupulate.
-
-//function enableValidation(options) {
-//const formEls = Array.from(document.querySelectorAll(".modal__form"));
-//console.log(formEls);
-//}
-
-// 3RD STEP (Proper way)
-// * Using [] and spread operater "..." can work same as "Array.from" method. It's more modern way to do.
-// * For preventDefault(), we have this in "index.js" but it's a bit cleaner here
-//   because we're assuring every time use this for each one of these forms, we are going to validate that we don't let it refresh the page.
 
 function enableValidation(options) {
   const formElements = [...document.querySelectorAll(options.formSelector)];

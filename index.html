@@ -52,7 +52,7 @@
               class="modal__input modal__input-title"
               id="profile-title-input"
               placeholder="Name"
-              type="text"
+              type="name"
               name="title"
               minlength="2"
               maxlength="40"
@@ -78,7 +78,11 @@
               id="profile-description-input-error"
             ></span>
           </label>
-          <button class="modal__button modal__button_disabled" type="submit">
+          <button
+            class="modal__button modal__button_disabled modal__button_disabled"
+            type="submit"
+            disabled
+          >
             Save
           </button>
         </form>
@@ -92,7 +96,7 @@
         <form class="modal__form" novalidate>
           <label class="modal__label">
             <input
-              class="modal__input_type_title"
+              class="modal__input modal__input_type_title"
               id="add-card-title"
               placeholder="Title"
               type="text"
@@ -106,7 +110,7 @@
           </label>
           <label class="modal__label">
             <input
-              class="modal__input_type_link"
+              class="modal__input modal__input_type_link"
               id="add-card-link"
               placeholder="Image link"
               type="url"
@@ -116,7 +120,7 @@
             <!--Error Message-->
             <span class="modal__error" id="add-card-link-error"></span>
           </label>
-          <button class="button modal__button" type="submit">Save</button>
+          <button class="button modal__button" type="submit">Create</button>
         </form>
       </div>
     </div>

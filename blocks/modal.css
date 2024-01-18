@@ -61,26 +61,28 @@
 }
 
 .modal__form {
-  max-width: 430px;
-  width: 100%;
-  box-sizing: border-box;
-  background-color: white;
-}
-
-.modal__input-title {
   display: flex;
   flex-direction: column;
+  margin-top: 54px;
+}
+
+.modal__input {
+  color: #000;
+  flex-direction: column;
   font-size: 14px;
+  line-height: 17px;
   font-family: "Inter", Arial, Helvetica, sans-serif;
   font-weight: 400;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-top: none;
   border-left: none;
   border-right: none;
+  max-width: 358px;
   width: 100%;
-  margin-top: 54px;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 13.26px;
   margin-bottom: 28.74px;
-  padding: 0;
 }
 
 .modal__input_type_error {
@@ -96,62 +98,15 @@
   line-height: 15px;
   color: #ff0000;
   font-weight: 400;
-  /*position: absolute;
-  /*opacity: 0;*/
-  /*top: 30px;*/
+  position: absolute;
+  opacity: 0;
   top: calc(100% + 6px);
   left: 0;
   transition: opacity 0.3s;
 }
 
-.modal__input_type_error_visible {
+.modal__error_visible {
   opacity: 1;
-}
-
-.modal__input-description {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  width: 100%;
-  margin-bottom: 47px;
-  padding: 0;
-}
-
-.modal__input_type_title {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  width: 100%;
-  margin-top: 54px;
-  margin-bottom: 28.74px;
-  padding: 0;
-}
-
-.modal__input_type_link {
-  display: flex;
-  flex-direction: column;
-  font-size: 14px;
-  font-family: "Inter", Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  width: 100%;
-  margin-bottom: 47px;
-  padding: 0;
 }
 
 .modal__button {
@@ -172,6 +127,23 @@
 .modal__button:hover {
   opacity: 0.5;
   cursor: pointer;
+}
+
+.modal__button_disabled {
+  background: #f6f6f6;
+  border: 1px solid #000;
+  color: #000;
+  opacity: 0.2;
+  cursor: default;
+}
+
+.modal__button_disabled:hover {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.modal__error_visible {
+  color: red;
 }
 
 .preview__card-image {
