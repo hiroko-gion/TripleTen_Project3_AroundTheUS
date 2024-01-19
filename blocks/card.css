@@ -8,6 +8,7 @@
   height: 282px;
   width: 282px;
   border-radius: 10px 10px 0 0;
+  cursor: pointer;
 }
 
 .card__title {
@@ -40,6 +41,7 @@
   padding: 0;
   transition: transform 0.3s ease;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .card__like-button:hover {
@@ -50,6 +52,7 @@
 
 .card__like-button-active {
   background: url(../images/like-active.svg);
+  cursor: pointer;
 }
 
 .crad__delete-button {
@@ -62,6 +65,7 @@
   margin-left: 249px;
   padding: 0;
   transition: opacity 0.3s linear;
+  cursor: pointer;
 }
 
 .crad__delete-button:hover {
