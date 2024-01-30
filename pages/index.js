@@ -1,3 +1,6 @@
+import Card from "../components/Card.js";
+//import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -103,15 +106,17 @@ function renderCard(cardData, wrapper) {
 
 // ||-------------     CREATE CARD FUNCTION    --------------------------------||
 function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", () => {
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  return card.generateCard();
+  //const cardElement = cardTemplate.cloneNode(true);
+  //const cardImageEl = cardElement.querySelector(".card__image");
+  //const cardTitleEl = cardElement.querySelector(".card__title");
+  //const likeButton = cardElement.querySelector(".card__like-button");
+  /*likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button-active");
   });
 
-  const deleteButton = cardElement.querySelector(".crad__delete-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
   deleteButton.addEventListener("click", () => {
     cardElement.remove();
   });
@@ -120,6 +125,8 @@ function getCardElement(cardData) {
   cardImageEl.alt = cardData.name;
   cardTitleEl.textContent = cardData.name;
 
+
+  
   cardImageEl.addEventListener("click", () => {
     previewImage.src = cardData.link;
     previewImage.alt = cardData.name;
@@ -127,8 +134,19 @@ function getCardElement(cardData) {
     openModal(previewImageModal);
   });
 
-  return cardElement;
+  return cardElement;*/
 }
+
+// ||--------------    PREVIEW IMAGE MODAL FUNCTION    -----------------------||
+function handleImageClick(cardData) {
+  previewImage.src = cardData._link;
+  previewImage.alt = cardData._name;
+  previewTitle.textContent = cardData._name;
+  openModal(previewImageModal);
+}
+
+// ||--------------    INITIAL CARDS EVENT LISTENER   ------------------------||
+initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 // ||--------------     PROFILE EDIT MODAL FUNCTION   ------------------------||
 function handleProfileEditSubmit(evt) {
@@ -163,9 +181,6 @@ closeButtons.forEach((button) => {
 });
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-
-// ||--------------    INITIAL CARDS EVENT LISTENER   ------------------------||
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
 // ||---------------   ADD NEW CARD MODAL EVENT LISTENER   -------------------||
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));

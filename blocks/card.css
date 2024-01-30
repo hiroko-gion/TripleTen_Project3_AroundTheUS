@@ -55,7 +55,7 @@
   cursor: pointer;
 }
 
-.crad__delete-button {
+.card__delete-button {
   background: url(../images/trash.svg) center no-repeat;
   position: absolute;
   width: 18px;
