@@ -1,5 +1,5 @@
 import Card from "../components/Card.js";
-//import FormValidator from "../components/FormValidator.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -32,6 +32,27 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg ",
   },
 ];
+
+// ||--------------     FORMVALIDATOR INSTANCE  ---------------------------------||
+const formValidationConfig = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormValidator = new FormValidator(
+  formValidationConfig,
+  profileEditForm
+);
+const addFormvalidator = new FormValidator(
+  formValidationConfig,
+  addNewCardForm
+);
+
+editFormValidator.enableValidation();
+addFormvalidator.enableValidation();
 
 // ||--------------     CARD TEMPLATE ELEMENT   ---------------------------------||
 const cardTemplate =
@@ -108,11 +129,16 @@ function renderCard(cardData, wrapper) {
 function getCardElement(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
   return card.generateCard();
-  //const cardElement = cardTemplate.cloneNode(true);
-  //const cardImageEl = cardElement.querySelector(".card__image");
-  //const cardTitleEl = cardElement.querySelector(".card__title");
-  //const likeButton = cardElement.querySelector(".card__like-button");
-  /*likeButton.addEventListener("click", () => {
+}
+
+//***** This create card function (original) is no longer needed after Card class was created and generating cards from above function.*********//
+
+//function getCardElement(cardData) {
+//const cardElement = cardTemplate.cloneNode(true);
+//const cardImageEl = cardElement.querySelector(".card__image");
+//const cardTitleEl = cardElement.querySelector(".card__title");
+//const likeButton = cardElement.querySelector(".card__like-button");
+/*likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button-active");
   });
 
@@ -134,8 +160,8 @@ function getCardElement(cardData) {
     openModal(previewImageModal);
   });
 
-  return cardElement;*/
-}
+  return cardElement;
+}*/
 
 // ||--------------    PREVIEW IMAGE MODAL FUNCTION    -----------------------||
 function handleImageClick(cardData) {

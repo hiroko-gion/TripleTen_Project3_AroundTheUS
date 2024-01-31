@@ -1,4 +1,4 @@
-// What we need to do here
+// What we need to do here (Sprint 6)
 // 1. look for all inputs inside of forms
 // 2. loop through all the inputs to see if all are valid
 // 3. if input is not valid,
