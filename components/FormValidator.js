@@ -1,4 +1,4 @@
-export default class Formvalidator {
+export default class FormValidator {
   constructor(config, formEl) {
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
@@ -6,6 +6,12 @@ export default class Formvalidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._formElement = formEl;
+    this._inputList = Array.from(
+      this._formElement.querySelectorAll(this._inputSelector)
+    );
+    this._submitButton = this._formElement.querySelector(
+      this._submitButtonSelector
+    );
   }
 
   _showInputError(inputEl) {
