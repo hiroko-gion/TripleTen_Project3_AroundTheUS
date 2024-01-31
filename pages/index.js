@@ -34,7 +34,8 @@ const initialCards = [
 ];
 
 // ||--------------     FORMVALIDATOR CONFIG  ---------------------------------||
-const formValidationConfig = {
+const config = {
+  formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
   inactiveButtonClass: "modal__button_disabled",
@@ -119,38 +120,6 @@ function getCardElement(cardData) {
   return card.generateCard();
 }
 
-//***** This create card function (original) is no longer needed after Card class was created and generating cards from above function.*********//
-
-//function getCardElement(cardData) {
-//const cardElement = cardTemplate.cloneNode(true);
-//const cardImageEl = cardElement.querySelector(".card__image");
-//const cardTitleEl = cardElement.querySelector(".card__title");
-//const likeButton = cardElement.querySelector(".card__like-button");
-/*likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button-active");
-  });
-
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.name;
-  cardTitleEl.textContent = cardData.name;
-
-
-  
-  cardImageEl.addEventListener("click", () => {
-    previewImage.src = cardData.link;
-    previewImage.alt = cardData.name;
-    previewTitle.textContent = cardData.name;
-    openModal(previewImageModal);
-  });
-
-  return cardElement;
-}*/
-
 // ||--------------    PREVIEW IMAGE MODAL FUNCTION    -----------------------||
 function handleImageClick(cardData) {
   previewImage.src = cardData._link;
@@ -160,8 +129,8 @@ function handleImageClick(cardData) {
 }
 
 // ||--------------    INITIAL CARDS EVENT LISTENER   ------------------------||
-//initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 initialCards.forEach(renderCard);
+
 // ||--------------     PROFILE EDIT MODAL FUNCTION   ------------------------||
 function handleProfileEditSubmit(evt) {
   evt.preventDefault();
@@ -175,12 +144,12 @@ function handleAddNewCardSubmit(evt) {
   evt.preventDefault();
   const addCard = {
     name: addNewCardTitleInput.value,
-    link: addNewCardLink.valu,
+    link: addNewCardLink.value,
   };
   renderCard(addCard);
   evt.target.reset();
   closeModal(addCardModal);
-  addFormvalidator.resetValidation();
+  formValidators["add-card-form"].toggleButtonState();
 }
 
 // ||---------------   PROFILE EDIT MODAL EVENT LISTENER   -------------------||
@@ -188,7 +157,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
-  editFormValidator.resetValidation();
+  formValidators["profile-form"].resetValidation();
 });
 
 // ||--------   ANY MODAL CLOSE BUTTON EVENT LISTENER (UNIVERSAL HANDLER) --------||
@@ -206,27 +175,18 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addNewCardForm.addEventListener("submit", handleAddNewCardSubmit);
 
 // ||--------------     FORMVALIDATION  ---------------------------------||
-const editFormValidator = new FormValidator(
-  formValidationConfig,
-  profileEditForm
-);
-const addFormvalidator = new FormValidator(
-  formValidationConfig,
-  addNewCardForm
-);
 
-editFormValidator.enablevalidation();
-addFormvalidator.enablevalidation();
+const formValidators = {};
 
-// ||---------------   3 MODALS CLOSE BUTTON EVENT LISTENER    -----------------||
-// || These are no longer needed after added universal handler for any modal close button. ||
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(config, formElement);
+    const formName = formElement.getAttribute("name");
 
-/*previewCloseButton.addEventListener("click", () => {
-  closeModal(previewImageModal);
-});*/
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
 
-/*profileEditCloseButton.addEventListener("click", () =>
-  closeModal(profileEditModal)
-);*/
-
-//addNewCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
+enableValidation(config);
