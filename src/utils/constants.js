@@ -38,3 +38,25 @@ export const config = {
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
 };
+
+//Create profile buttons elements
+
+const profile = document.querySelector(".profile");
+export const profileEditButton = profile.querySelector(".profile__edit-button");
+export const profileAddButton = profile.querySelector(".profile__add-button");
+
+// Profile edit inputs
+const profileEditModal = document.querySelector("#profile-edit-modal");
+export const profileInputList = Array.from(
+  profileEditModal.querySelectorAll(".modal__input")
+);
+
+// All form elements
+
+export const formList = Array.from(
+  document.querySelectorAll(config.formSelector)
+);
+
+//Empty the form
+
+export const formValidators = {};
