@@ -1,12 +1,12 @@
 import "../pages/index.css";
 
 //import all classes
-import Card from "../../src/components/Card.js";
-import FormValidator from "../../src/components/FormValidator.js";
-import Section from "../../src/components/Section.js";
-import PopupWithForm from "../../src/components/PopupWithForm.js";
-import PopupWithImage from "../../src/components/PopupWithImage.js";
-import UserInfo from "../../src/components/UserInfo.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import UserInfo from "../components/UserInfo.js";
 
 import {
   initialCards,
@@ -16,7 +16,7 @@ import {
   profileInputList,
   formList,
   formValidators,
-} from "../../src/utils/constants";
+} from "../utils/constants";
 
 //Create instances of the classes
 //New user info
@@ -26,9 +26,9 @@ const userInfo = new UserInfo({
 });
 
 //Form validator
-formList.forEach((form) => {
-  const validator = new FormValidator(form, config);
-  const formName = form.getAttribute("name");
+formList.forEach((formElement) => {
+  const validator = new FormValidator(config, formElement);
+  const formName = formElement.getAttribute("name");
   validator.enableValidation();
   formValidators[formName] = validator;
 });
@@ -43,12 +43,18 @@ function renderCard(cardData) {
 function handleImageClick(name, link) {
   previewPopup.open({ name, link });
 }
-
 const previewPopup = new PopupWithImage("#preview-image-modal");
+previewPopup.setEventListeners();
 
 //New section
 const cardsContainer = new Section(
-  { items: initialCards, renderer: renderCard },
+  {
+    items: initialCards,
+    renderer: function (cardData) {
+      const cardElement = renderCard(cardData);
+      cardsContainer.addItem(cardElement);
+    },
+  },
   ".cards__list"
 );
 
@@ -56,32 +62,36 @@ const cardsContainer = new Section(
 cardsContainer.renderItems();
 
 // Create profile edit modal
-const profileEditModal = new PopupWithForm(
+const profileEditPopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileFormSubmit,
   config
 );
+profileEditPopup.setEventListeners();
 
 //PopupWithFormImage
-const profileAddModal = new PopupWithForm(
+const profileAddPopup = new PopupWithForm(
   "#add-card-modal",
   handleAddImageFormSubmit,
   config
 );
+profileAddPopup.setEventListeners();
 
 //Function profile edit submit
 function handleProfileFormSubmit(values) {
   userInfo.setUserInfo(values);
-  profileEditModal.close();
+  profileEditPopup.close();
 }
 
-//Add image submit
+//Function add image submit
 function handleAddImageFormSubmit(values) {
-  const newCard = renderCard(values);
+  const newCard = {
+    name: values.title,
+    link: values.url,
+  };
   cardsContainer.addItem(newCard);
-  formValidators.addCardForm.resetForm();
-  formValidators.addCardForm.disableSubmit();
-  profileAddModal.close();
+  profileAddPopup.close();
+  profileAddPopup.reset();
 }
 
 //Add click event listner to profile edit button
@@ -89,15 +99,15 @@ profileEditButton.addEventListener("click", () => {
   const userCurrentInfo = userInfo.getUserInfo();
   profileInputList[0].value = userCurrentInfo.name;
   profileInputList[1].value = userCurrentInfo.description;
-  profileEditModal.open();
+  profileEditPopup.open();
 });
 
 // ADD A CLICK EVENT LISTENER TO THE PROFILE ADD BUTTON
 profileAddButton.addEventListener("click", () => {
-  profileAddModal.open();
+  profileAddPopup.open();
 });
 
-// ADD A CLICK EVENT LISTENER TO THE EDIT PROFILE MODAL
+/*// ADD A CLICK EVENT LISTENER TO THE EDIT PROFILE MODAL
 profileEditModal.setEventListeners();
 
 // ADD A CLICK EVENT LISTENER TO THE ADD IMAGE MODAL
@@ -105,3 +115,4 @@ profileAddModal.setEventListeners();
 
 // ADD EVENT LISTENERS TO TEHE PREVIEW IMAGE MODAL
 previewPopup.setEventListeners();
+*/
